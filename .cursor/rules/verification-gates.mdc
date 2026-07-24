@@ -1,0 +1,14 @@
+---
+description: Verification gates before merging Rivet changes
+alwaysApply: true
+---
+
+# Verification gates
+
+Before considering RTL/TB work done:
+
+1. Verilator lint (`scripts/lint.ps1` or `lint.sh`) must pass when Verilator is available.
+2. Do not merge feature work that breaks core elaborate/lint.
+3. Questa UVM smoke when Questa is installed; otherwise note "UVM deferred — Questa not installed".
+4. Vivado BFM is optional extra confidence, never a substitute for UVM.
+5. Prefer small slices: change → lint → (UVM) → next slice.

@@ -1,0 +1,13 @@
+---
+description: PHY and full PCIe IP (rivet_pcie) rules
+globs: rtl/phy/**/*,rtl/top/**/*
+alwaysApply: false
+---
+
+# PHY and full IP
+
+- Only `rtl/phy/` and `rtl/top/rivet_pcie` may reference Xilinx PG239.
+- PIPE is the sole boundary between `rivet_pcie_ctrl` and PHY.
+- Family select via `FPGA_FAMILY` (US+ first, US second).
+- Do not check in encrypted IP; stub PHYs are OK until board IP is generated.
+- Instance names in top: `u_ctrl`, `u_phy`.

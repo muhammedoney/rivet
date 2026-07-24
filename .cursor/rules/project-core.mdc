@@ -1,0 +1,18 @@
+---
+description: Rivet project core — identity, terminology, verification-first
+alwaysApply: true
+---
+
+# Rivet core
+
+- Project: **Rivet**. Packages: `rivet_pkg`, `rivet_uvm_pkg`.
+- English only for code, comments, commits, docs.
+- Terminology (locked):
+  - **`rivet_pcie_ctrl`** — multi-mode soft controller (EP/RC/USP/DSP) to PIPE
+  - **`rivet_pcie_phy_*`** — PG239 family PHY wrappers
+  - **`rivet_pcie`** — full soft IP = ctrl + phy
+- User IF on controller: AXI-ST CQ/CC/RQ/RC (PG213-style) + AXI-Lite
+- Current focus: `MODE=EP`, Gen2, `LANES` in {1,2,4}
+- No vendor cells in `rtl/pcie_ctrl/`; PHY only under `rtl/phy/`
+- Verification before features; no proprietary specs in-repo
+- Commits: `feat|fix|test|docs|build|chore|refactor(scope): ...`

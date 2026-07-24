@@ -1,0 +1,17 @@
+---
+description: SystemVerilog RTL style for Rivet controller, PHY, and top
+globs: rtl/**/*.sv
+alwaysApply: false
+---
+
+# SV RTL style
+
+- `lower_snake` modules/signals; packages in `*_pkg`.
+- Parameters: `MODE`, `GEN`, `LANES` (1/2/4), widths explicit.
+- No Xilinx primitives inside `rtl/pcie_ctrl/` (`rivet_pcie_ctrl`).
+- PHY (`rtl/phy/`) and top (`rivet_pcie`) may reference PG239.
+- Prefer interfaces under `rtl/interfaces/` for TB; DUT may use flat ports.
+- Guard `$error` / sim-only checks with `` `ifndef SYNTHESIS ``.
+- Keep AXI-ST **all four** channels (CQ/CC/RQ/RC) on the controller.
+- Do not weaken lane support: ×1, ×2, ×4 remain first-class.
+- Do not name the controller `*_ep`; mode is a parameter, not the module identity.
