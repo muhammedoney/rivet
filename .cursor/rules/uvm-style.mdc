@@ -8,8 +8,10 @@ alwaysApply: false
 
 - Package: `rivet_uvm_pkg`; primary DUT: **`rivet_pcie_ctrl`** at PIPE.
 - Agents: `pipe_agent` + `cq/cc/rq/rc` AXI-ST agents.
-- Raise/drop objections in `run_phase`; keep Phase 0 smoke short.
+- Raise/drop objections in `run_phase`; keep Phase 0/1 smoke short.
 - Extend scoreboard/coverage stubs — do not delete them.
+- **Phase 1 priority:** fill PIPE + AXI-ST agents/sequences for **Gen2** before Gen3/4 TB features.
 - Smoke order: `smoke_gen2_x1` then `smoke_gen2_x2` / `smoke_gen2_x4`.
 - BFM track under `tb/bfm/` is separate from UVM.
 - Compile with `+incdir+tb/uvm` and `tb/uvm/filelist_uvm.f`.
+- Gen3/4 UVM follow-ups: `docs/gen-evolution.md`.
