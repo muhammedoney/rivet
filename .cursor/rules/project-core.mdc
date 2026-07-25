@@ -11,7 +11,7 @@ alwaysApply: true
   - **`rivet_pcie_ctrl`** — multi-mode soft controller (EP/RC/USP/DSP) to PIPE
   - **`rivet_pcie_phy_*`** — PG239 family PHY wrappers
   - **`rivet_pcie`** — full soft IP = ctrl + phy
-- User IF on controller: AXI-ST CQ/CC/RQ/RC (PG213-style) + AXI-Lite
+- User IF on controller: AXI-ST CQ/CC/RQ/RC + `cfg_mgmt_*` (PG213-style); no AXI-Lite
 - Current focus: `MODE=EP`, Gen2, `LANES` in {1,2,4}
 - Phase 1: UVM environment first, then Gen2 link RTL (see `docs/roadmap.md`)
 - Gen3/4 deltas: `docs/gen-evolution.md` — do not implement Gen3/4 protocol while Gen2 is active
