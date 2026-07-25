@@ -1,0 +1,27 @@
+---
+description: Auto-commit after Rivet work slices (no push)
+alwaysApply: true
+---
+
+# Auto-commit policy
+
+After finishing a coherent work slice (RTL, TB, docs, scripts, rules), **create a git commit** without waiting for the user to ask.
+
+## Required
+
+1. Follow the repo Git Safety Protocol (status / diff / log; stage relevant files; conventional commit message; never amend unless all amend conditions are met).
+2. **Do not push** unless the user explicitly asks to push.
+3. Do not commit secrets, `specs/`, `third_party` binaries, or `scripts/local_paths.*`.
+4. Prefer one commit per logical slice (docs-only vs RTL+TB can be separate if cleaner).
+5. Message style: `feat|fix|test|docs|build|chore|refactor(scope): ...` (English).
+
+## Loop direction (future)
+
+Target loop: **change → lint (when tools available) → commit → next slice**.  
+When Verilator/Questa are missing, still commit; note deferred verification in the commit body or PR notes if relevant.
+
+## Exceptions
+
+- User says "don't commit" / "wait" for that turn.
+- Empty or no-op changes — do not create an empty commit.
+- Incomplete mid-debug experiments the user is still iterating on in the same turn — wait until the slice is coherent.

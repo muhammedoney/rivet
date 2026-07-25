@@ -11,4 +11,5 @@ Before considering RTL/TB work done:
 2. Do not merge feature work that breaks core elaborate/lint.
 3. Questa UVM smoke when Questa is installed; otherwise note "UVM deferred — Questa not installed".
 4. Vivado BFM is optional extra confidence, never a substitute for UVM.
-5. Prefer small slices: change → lint → (UVM) → next slice.
+5. Prefer small slices: change → lint (when available) → **commit** → next slice.
+6. Auto-commit after each coherent slice (see `auto-commit.mdc`); do not push unless asked.
