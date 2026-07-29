@@ -1,17 +1,25 @@
 ---
-description: SystemVerilog RTL style for Rivet controller, PHY, and top
+description: SystemVerilog RTL style for Rivet controller, PHY, and top (lowRISC-inspired)
 globs: rtl/**/*.sv
 alwaysApply: false
 ---
 
 # SV RTL style
 
-- `lower_snake` modules/signals; packages in `*_pkg`.
+Full rules: `docs/rtl-style.md` (adapted from lowRISC VerilogCodingStyle, CC-BY-4.0).  
+Process practices: `docs/do254-practices.md` (not a certification claim).
+
+- `lower_snake` modules/signals; packages `*_pkg`; enums `*_e`; typedefs `*_t`.
+- New internal ports: prefer `*_i` / `*_o` / `*_ni`. Public PIPE/AXI tops keep flat / PG239 names.
 - Parameters: `MODE`, `GEN`, `LANES` (1/2/4), widths explicit.
-- No Xilinx primitives inside `rtl/pcie_ctrl/` (`rivet_pcie_ctrl`).
+- `logic`; `always_ff` + `<=`; `always_comb` + `=`; no `#delay` in synth; no latches if avoidable.
+- Active-low async reset: `always_ff @(posedge clk or negedge rst_n)`.
+- Named port connects only; explicit literal widths; endlabels on `endmodule`.
+- No Xilinx primitives inside `rtl/pcie_ctrl/`.
 - PHY (`rtl/phy/`) and top (`rivet_pcie`) may reference PG239.
 - Prefer interfaces under `rtl/interfaces/` for TB; DUT may use flat ports.
 - Guard `$error` / sim-only checks with `` `ifndef SYNTHESIS ``.
 - Keep AXI-ST **all four** channels (CQ/CC/RQ/RC) on the controller.
 - Do not weaken lane support: ×1, ×2, ×4 remain first-class.
 - Do not name the controller `*_ep`; mode is a parameter, not the module identity.
+- Gen2-first: no Gen3/4 protocol behavior in active slices (`docs/gen-evolution.md`).
