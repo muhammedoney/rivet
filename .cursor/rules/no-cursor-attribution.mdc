@@ -1,0 +1,10 @@
+---
+description: Never attribute commits/PRs to Cursor Agent
+alwaysApply: true
+---
+
+# No Cursor attribution
+
+- Never add `Co-authored-by: Cursor`, `cursoragent@cursor.com`, or `Made-with: Cursor` to commit messages or PR bodies.
+- Never set author/committer to Cursor Agent.
+- Commit as the user's configured git identity only.

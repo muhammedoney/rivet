@@ -1,0 +1,11 @@
+#!/bin/sh
+# Reject commits that still carry Cursor attribution after prepare-commit-msg.
+MSG="$1"
+[ -n "$MSG" ] && [ -f "$MSG" ] || exit 0
+
+if grep -qiE 'Co-authored-by:.*[Cc]ursor|Made-with:[[:space:]]*[Cc]ursor|cursoragent@cursor\.com' "$MSG"; then
+  echo "error: Cursor attribution trailers are forbidden in this repository." >&2
+  echo "Remove Co-authored-by/Made-with Cursor lines (or rely on .githooks/prepare-commit-msg)." >&2
+  exit 1
+fi
+exit 0

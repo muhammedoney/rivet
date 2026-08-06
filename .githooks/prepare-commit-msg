@@ -1,0 +1,14 @@
+#!/bin/sh
+# Strip Cursor Agent attribution trailers before the commit is finalized.
+# Args: $1 = path to commit message file
+MSG="$1"
+[ -n "$MSG" ] && [ -f "$MSG" ] || exit 0
+
+tmp="${MSG}.strip-cursor.$$"
+sed \
+  -e '/^Co-authored-by: Cursor <cursoragent@cursor\.com>$/d' \
+  -e '/^Co-authored-by:.*[Cc]ursor.*/d' \
+  -e '/^Made-with:[[:space:]]*[Cc]ursor$/d' \
+  "$MSG" > "$tmp" && mv "$tmp" "$MSG"
+rm -f "$tmp"
+exit 0

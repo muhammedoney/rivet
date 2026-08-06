@@ -14,6 +14,7 @@ After finishing a coherent work slice (RTL, TB, docs, scripts, rules), **create 
 3. Do not commit secrets, `specs/`, `third_party` binaries, or `scripts/local_paths.*`.
 4. Prefer one commit per logical slice (docs-only vs RTL+TB can be separate if cleaner).
 5. Message style: `feat|fix|test|docs|build|chore|refactor(scope): ...` (English).
+6. **No Cursor attribution** — never add `Co-authored-by: Cursor`, `cursoragent@cursor.com`, or `Made-with: Cursor`.
 
 ## Loop direction (future)
 
